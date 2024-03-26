@@ -1,9 +1,11 @@
-NAME = register
+NAME = phonebook
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 CC = c++
 RM = rm -f
 
-SRCS =	register.cpp
+SRCS =	Phonebook.class.cpp \
+		main.cpp \
+		Contact.class.cpp \
 
 OBJC = ${SRCS:.cpp=.o}
 
