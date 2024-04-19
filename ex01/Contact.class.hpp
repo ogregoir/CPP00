@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:42:03 by ogregoir          #+#    #+#             */
-/*   Updated: 2024/03/26 23:23:29 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/19 15:05:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define CONTACT_CLASS_H
 
 #include <string>
+#pragma once
 
 class Contact {
 

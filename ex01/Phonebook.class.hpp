@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:19:09 by ogregoir          #+#    #+#             */
-/*   Updated: 2024/03/27 00:05:17 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/19 15:05:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define PHONEBOOK_CLASS_H
 
 #include "Contact.class.hpp"
+#pragma once
 #include <iostream>
 #include <string>
 #include <iomanip>
