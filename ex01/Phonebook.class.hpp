@@ -6,15 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:19:09 by ogregoir          #+#    #+#             */
-/*   Updated: 2024/04/19 15:05:10 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:43:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-#define PHONEBOOK_CLASS_H
+#pragma once
 
 #include "Contact.class.hpp"
-#pragma once
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -29,5 +27,3 @@ public :
 
 int	    ft_add(Phonebook &repertoire, int i);
 void	ft_search(Phonebook &repertoire, std::string input);
-
-#endif

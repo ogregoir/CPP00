@@ -6,15 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:42:03 by ogregoir          #+#    #+#             */
-/*   Updated: 2024/04/19 15:05:03 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:44:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_CLASS_H
-#define CONTACT_CLASS_H
+#pragma once
 
 #include <string>
-#pragma once
 
 class Contact {
 
@@ -29,5 +27,3 @@ public :
 	Contact( void );
 	~Contact( void );
 };
-
-#endif
