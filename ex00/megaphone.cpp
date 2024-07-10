@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ogregoir <ogregoir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:26:19 by ogregoir          #+#    #+#             */
-/*   Updated: 2024/03/25 14:18:02 by ogregoir         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:58:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,34 @@
 #include <cstring>
 #include <stdio.h>
 
-int ft_strlen(char **argv)
-{
-	int len;
-	int	i;
-
-	i = 1;
-	len = 0;
-	while(argv[i])
-	{
-		len += std::strlen(argv[i]);
-		i++;
-	}
-	return(len);
-}
 int main(int argc, char **argv)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	*str;
+	int			i;
+	int			j;
+	std::string	str;
 
 	i = 0;
 	j = 1;
-	k = 0;
 	if(argc == 1)
 	{
 		std::cout << "LOUD AND UNBEARABLE FEEDBACK NOISE" << std::endl;
 		return (0);
 	}
-	str = new char[ft_strlen(argv) + 1];
 	while(argv[j])
 	{
 		i = 0;
 		while(argv[j][i])
 		{
 			if (std::islower(argv[j][i]))
-				str[k] = std::toupper(argv[j][i]);
+				str += std::toupper(argv[j][i]);
 			else
-				str[k] = argv[j][i];
+				str += argv[j][i];
 			i++;
-			k++;
 		}
+		if(argv[j + 1])
+			str += ' ';
 		j++;
 	}
-	str[k] = '\0';
 	std::cout << str << std::endl;
-	delete[] str;
 	return (0);
 }

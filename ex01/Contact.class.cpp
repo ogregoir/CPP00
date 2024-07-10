@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:44:03 by ogregoir          #+#    #+#             */
-/*   Updated: 2024/03/27 00:05:52 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/10 22:31:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,152 @@
 #include "Contact.class.hpp"
 #include "Phonebook.class.hpp"
 
-Contact::Contact( void ) {
-    
-    std::cout << "Constructor called" << std::endl;
-    return;
+
+int	Contact::get_index(){
+	return index;
+}
+std::string	Contact::get_Fname(){
+	return first_name;
+}
+std::string	Contact::get_Lname(){
+	return last_name;
+}
+std::string	Contact::get_Nname(){
+	return nickname;
+}
+std::string	Contact::get_number(){
+	return phone_number;
+}
+std::string	Contact::get_ds(){
+	return darkest_secret;
 }
 
-Contact::~Contact( void ) {
-    
-    std::cout << "Destructor called" << std::endl;
-    return;
+void	Contact::set_Fname(std::string name){
+	this->first_name = name;
 }
-
-void	verif_string(Phonebook &repertoire, int i)
+void	Contact::set_Lname(std::string name){
+	this->last_name = name;
+}
+void	Contact::set_Nname(std::string name){
+	this->nickname = name;
+}
+void	Contact::set_number(std::string number){
+	this->phone_number = number;
+}
+void	Contact::set_ds(std::string ds){
+	this->darkest_secret = ds;
+}
+void	Contact::set_index(int idx)
 {
-	if (repertoire.contact[i - 1].first_name.size() == 0)
-		repertoire.contact[i - 1].first_name = "/";
-	if (repertoire.contact[i - 1].last_name.size() == 0)
-		repertoire.contact[i - 1].last_name = "/";
-	if (repertoire.contact[i - 1].nickname.size() == 0)
-		repertoire.contact[i - 1].nickname = "/";
-	if (repertoire.contact[i - 1].phone_number.size() == 0)
-		repertoire.contact[i - 1].phone_number = "/";
-	if (repertoire.contact[i - 1].darkest_secret.size() == 0)
-		repertoire.contact[i - 1].darkest_secret = "/";
+	this->index = idx;
+}
+
+
+void	verif_first_name(Phonebook &repertoire, int i, std::string check)
+{
+	while (check.empty())
+	{
+		std::cout << "The first name is required, please enter a first name" << std::endl;
+		std::cout << "First name : "; 
+		std::getline(std::cin, check);
+	}
+	repertoire.contact[i].set_Fname(check);
+}
+
+void	verif_last_name(Phonebook &repertoire, int i, std::string check)
+{
+	while (check.empty())
+	{
+		std::cout << "The last name is required, please enter a last name" << std::endl;
+		std::cout << "Last name : ";
+		std::getline(std::cin, check);
+	}
+	repertoire.contact[i].set_Lname(check);
+}
+
+void	verif_nickname(Phonebook &repertoire, int i, std::string check)
+{
+	while (check.empty())
+	{
+		std::cout << "The nickname is required, please enter a nickname :" << std::endl;
+		std::cout << "Nickname : ";
+		std::getline(std::cin, check);
+	}
+	repertoire.contact[i].set_Nname(check);
+	
+}
+
+void	verif_number(Phonebook &repertoire, int i, std::string check)
+{
+	int	j = 0;
+	
+	while(check[j])
+	{
+		if(!std::isdigit(check[j]))
+			break;
+		j++;
+	}
+	if (j != check.size())
+	{
+		std::cout << "The phone number must only contain numbers" << std::endl;
+		std::cout << "Please enter a correct phone number :" << std::endl;
+		std::getline(std::cin, check);
+		verif_number(repertoire, i, check);
+	}
+	else
+		repertoire.contact[i].set_number(check);;
+}
+
+void	verif_string(Contact &contact)
+{
+	if (contact.get_number().empty())
+		contact.set_number("/");
+	if (contact.get_ds().empty())
+		contact.set_ds("/");
 }
 
 int	ft_add(Phonebook &repertoire, int i)
 {
+	std::string temp;
+	
 	if (i < 8)
 	{
 		std::cout << "First name : ";
-		std::getline(std::cin, repertoire.contact[i].first_name);
+		std::getline(std::cin, temp);
+		verif_first_name(repertoire, i, temp);
 		std::cout << "Last name : ";
-		std::getline(std::cin, repertoire.contact[i].last_name);
+		std::getline(std::cin, temp);
+		verif_last_name(repertoire, i, temp);
 		std::cout << "Nickname : ";
-		std::getline(std::cin, repertoire.contact[i].nickname);
+		std::getline(std::cin, temp);
+		verif_nickname(repertoire, i, temp);
 		std::cout << "Phone number : ";
-		std::getline(std::cin, repertoire.contact[i].phone_number);
+		std::getline(std::cin, temp);
+		verif_number(repertoire, i, temp);
 		std::cout << "Darkest secret : ";
-		std::getline(std::cin, repertoire.contact[i].darkest_secret);
+		std::getline(std::cin, temp);
+		repertoire.contact[i].set_ds(temp);
+		verif_string(repertoire.contact[i]);
 		i++;
 	}
 	else
 	{
 		std::cout << "First name : ";
-		std::getline(std::cin, repertoire.contact[7].first_name);
+		std::getline(std::cin, temp);
+		verif_first_name(repertoire, 7, temp);
 		std::cout << "Last name : ";
-		std::getline(std::cin, repertoire.contact[7].last_name);
+		std::getline(std::cin, temp);
+		verif_last_name(repertoire, 7, temp);
 		std::cout << "Nickname : ";
-		std::getline(std::cin, repertoire.contact[7].nickname);
+		std::getline(std::cin, temp);
+		verif_nickname(repertoire, 7, temp);
 		std::cout << "Phone number : ";
-		std::getline(std::cin, repertoire.contact[7].phone_number);
+		std::getline(std::cin, temp);
+		verif_number(repertoire, 7, temp);
 		std::cout << "Darkest secret : ";
-		std::getline(std::cin, repertoire.contact[7].darkest_secret);
+		std::getline(std::cin, temp);
+		repertoire.contact[7].set_ds(temp);
+		verif_string(repertoire.contact[7]);
 	}
-	verif_string(repertoire, i);
 	return (i);
 }

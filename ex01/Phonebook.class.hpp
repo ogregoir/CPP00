@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:19:09 by ogregoir          #+#    #+#             */
-/*   Updated: 2024/07/06 16:43:57 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/10 22:10:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 class Phonebook {
 
 public :
-    Phonebook( void );
     Contact     contact[8];
-    ~Phonebook( void );
 };
 
 int	    ft_add(Phonebook &repertoire, int i);
