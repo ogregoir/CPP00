@@ -1,6 +1,9 @@
 NAME = megaphone
+
 CFLAGS = -Wall -Wextra -Werror -std=c++98
+
 CC = c++
+
 RM = rm -f
 
 SRCS =	megaphone.cpp
@@ -8,6 +11,9 @@ SRCS =	megaphone.cpp
 OBJC = ${SRCS:.cpp=.o}
 
 all: ${NAME}
+
+.cpp.o:
+	${CC} -c $< -o $(<:.cpp=.o) ${CFLAGS}
 
 ${NAME}: ${OBJC}
 	${CC} ${CFLAGS} ${OBJC} -o ${NAME}

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:44:03 by ogregoir          #+#    #+#             */
-/*   Updated: 2024/07/10 22:31:52 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/13 02:26:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,29 @@ void	Contact::set_index(int idx)
 	this->index = idx;
 }
 
+bool	ft_isalpha(std::string check)
+{
+	size_t	i = 0;
+	while(i != check.size())
+	{
+		if(!std::isalpha(check[i]))
+			return false;
+		i++;
+	}
+	return true;
+}
 
 void	verif_first_name(Phonebook &repertoire, int i, std::string check)
 {
 	while (check.empty())
 	{
 		std::cout << "The first name is required, please enter a first name" << std::endl;
+		std::cout << "First name : "; 
+		std::getline(std::cin, check);
+	}
+	while(!ft_isalpha(check))
+	{
+		std::cout << "The first name must contain only alphabetical characters" << std::endl;
 		std::cout << "First name : "; 
 		std::getline(std::cin, check);
 	}
@@ -74,6 +91,12 @@ void	verif_last_name(Phonebook &repertoire, int i, std::string check)
 		std::cout << "Last name : ";
 		std::getline(std::cin, check);
 	}
+	while(!ft_isalpha(check))
+	{
+		std::cout << "The last name must contain only alphabetical characters" << std::endl;
+		std::cout << "Last name : ";
+		std::getline(std::cin, check);
+	}
 	repertoire.contact[i].set_Lname(check);
 }
 
@@ -81,7 +104,13 @@ void	verif_nickname(Phonebook &repertoire, int i, std::string check)
 {
 	while (check.empty())
 	{
-		std::cout << "The nickname is required, please enter a nickname :" << std::endl;
+		std::cout << "The nickname is required, please enter a nickname" << std::endl;
+		std::cout << "Nickname : ";
+		std::getline(std::cin, check);
+	}
+	while(!ft_isalpha(check))
+	{
+		std::cout << "The nickname must contain only alphabetical characters" << std::endl;
 		std::cout << "Nickname : ";
 		std::getline(std::cin, check);
 	}
@@ -91,7 +120,7 @@ void	verif_nickname(Phonebook &repertoire, int i, std::string check)
 
 void	verif_number(Phonebook &repertoire, int i, std::string check)
 {
-	int	j = 0;
+	size_t	j = 0;
 	
 	while(check[j])
 	{

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:26:07 by ogregoir          #+#    #+#             */
-/*   Updated: 2024/07/10 22:14:41 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/13 02:13:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,8 @@
 
 void	verif_char(std::string str)
 {
-	int	k;
-
-	k = 0;
 	if (str.size() > 9)
-	{
-		while (k != 9)
-		{
-			std::cout << str[k];
-			k++;
-		}
-		std::cout << '.';
-		std::cout << '|';
-	}
+		std::cout << std::setw(9) << std::setfill(' ') << str.substr(0, 9) << ".|";
 	else
 		std::cout << std::setw(10) << std::setfill(' ') << str << '|';
 }
@@ -35,11 +24,14 @@ void	ft_index(Phonebook &repertoire, std::string input)
 {
 	int	index;
 
-	index = std::stoi(input);
+	index = std::atoi(input.c_str());
 	if (index >= 1 && index <= 8)
 	{
 		if (repertoire.contact[index - 1].get_Fname().empty())
+		{
 			std::cout << "Contact " << index << " does not exist" << std::endl;
+			ft_index2(repertoire, input);
+		}
 		else
 		{
 			std::cout << "First name : " << repertoire.contact[index - 1].get_Fname() << std::endl;
@@ -50,7 +42,29 @@ void	ft_index(Phonebook &repertoire, std::string input)
 		}
 	}
 	else
+	{
 		std::cout << "Contacts are between 1 and 8" << std::endl;
+		ft_index2(repertoire, input);
+	}
+		
+}
+
+void	ft_index2(Phonebook &repertoire, std::string input)
+{
+	std::cout << "index or no? ";
+	std::getline(std::cin, input);
+	if(input == "no")
+		return ;
+	if (std::isdigit(input[0]) && input.size() == 1)
+	{
+		ft_index(repertoire, input);
+	}
+	else
+	{
+		std::cout << "Index format is invalid" << std::endl;
+		ft_index2(repertoire, input);
+	}
+		
 }
 
 void	ft_search(Phonebook &repertoire, std::string input)
@@ -62,17 +76,12 @@ void	ft_search(Phonebook &repertoire, std::string input)
 	while (j < 8)
 	{
 		repertoire.contact[j].set_index(j + 1);
-		std::cout << "         " << repertoire.contact[j].get_index() << '|';
+		std::cout << std::setw(10) << std::setfill(' ') << repertoire.contact[j].get_index() << '|';
 		verif_char(repertoire.contact[j].get_Fname());
 		verif_char(repertoire.contact[j].get_Lname());
 		verif_char(repertoire.contact[j].get_Nname());
 		std::cout << std::endl;
 		j++;
 	}
-	std::cout << "index ? ";
-	std::getline(std::cin, input);
-	if (std::isdigit(input[0]) && input.size() == 1)
-		ft_index(repertoire, input);
-	else
-		std::cout << "Index format is invalid" << std::endl;
+	ft_index2(repertoire, input);
 }

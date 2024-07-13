@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:26:19 by ogregoir          #+#    #+#             */
-/*   Updated: 2024/07/10 19:58:22 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/13 02:03:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ int main(int argc, char **argv)
 	}
 	std::cout << str << std::endl;
 	return (0);
+	
 }
